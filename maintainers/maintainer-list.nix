@@ -13686,6 +13686,16 @@
     githubId = 56316606;
     name = "Amneesh Singh";
   };
+  naxdy = {
+    name = "Dominique Hummel";
+    email = "xnaxdy@hydra-development.net";
+    matrix = "@naxdy:matrix.org";
+    github = "Naxdy";
+    githubId = 4532582;
+    keys = [{
+      fingerprint = "70A5 2F17 47A0 16DC 40CC F8AD C043 7AAE 9755 550F";
+    }];
+  };
   nazarewk = {
     name = "Krzysztof Nazarewski";
     matrix = "@nazarewk:matrix.org";
