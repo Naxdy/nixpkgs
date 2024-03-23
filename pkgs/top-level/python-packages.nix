@@ -11607,6 +11607,8 @@ self: super: with self; {
 
   pysimplegui = callPackage ../development/python-modules/pysimplegui { };
 
+  pysimplegui4 = callPackage ../development/python-modules/pysimplegui4 { };
+
   pysingleton = callPackage ../development/python-modules/pysingleton { };
 
   pyslim = callPackage ../development/python-modules/pyslim { };
