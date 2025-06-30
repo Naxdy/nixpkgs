@@ -62,6 +62,6 @@ stdenv.mkDerivation (finalAttrs: {
     license = licenses.unfree;
     description = "Kernel module for the Blackmagic Design Decklink cards";
     sourceProvenance = with lib.sourceTypes; [ binaryFirmware ];
-    platforms = platforms.linux;
+    platforms = [ "x86_64-linux" ];
   };
 })

@@ -104,6 +104,6 @@ stdenv.mkDerivation (finalAttrs: {
     maintainers = [ maintainers.naxdy ];
     license = licenses.unfree;
     description = "Supporting applications for Blackmagic Decklink. Doesn't include the desktop applications, only the helper required to make the driver work";
-    platforms = platforms.linux;
+    platforms = [ "x86_64-linux" ];
   };
 })
