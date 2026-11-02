@@ -60,6 +60,18 @@
         # NixOS.
         systemd.services."systemd-pcrlogin@".unitConfig.ConditionPathExists =
           "/run/systemd/nvpcr/login.auth";
+
+        # systemd v262 measures volume keys through the io.systemd.PCRExtend
+        # Varlink service instead of extending the TPM itself, and
+        # systemd-cryptsetup ignores a failed measurement. The socket is only
+        # pulled in by sockets.target, which comes after cryptsetup.target, so
+        # it would be too late.
+        systemd.sockets."systemd-pcrextend" = {
+          overrideStrategy = "asDropin";
+          wantedBy = [ "cryptsetup.target" ];
+          wants = [ "cryptsetup-pre.target" ];
+          before = [ "cryptsetup-pre.target" ];
+        };
       }
     )
     (
@@ -101,6 +113,16 @@
           "${cfg.package}/lib/systemd/system-generators/systemd-tpm2-generator"
           "${cfg.package}/lib/systemd/systemd-pcrextend"
         ];
+
+        # See the stage 2 block: the io.systemd.PCRExtend socket has to be
+        # listening before any volume is unlocked, otherwise the volume key
+        # measurement silently fails.
+        boot.initrd.systemd.sockets."systemd-pcrextend" = {
+          overrideStrategy = "asDropin";
+          wantedBy = [ "cryptsetup.target" ];
+          wants = [ "cryptsetup-pre.target" ];
+          before = [ "cryptsetup-pre.target" ];
+        };
       }
     )
     (
