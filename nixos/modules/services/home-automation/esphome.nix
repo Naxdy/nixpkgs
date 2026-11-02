@@ -91,12 +91,13 @@ in
 
     logLevel = mkOption {
       type = types.enum [
-        "debug"
-        "info"
-        "warning"
-        "error"
+        "DEBUG"
+        "INFO"
+        "WARNING"
+        "ERROR"
+        "CRITICAL"
       ];
-      default = "info";
+      default = "INFO";
       description = "Log level of the ESPHome Device Builder";
     };
 
